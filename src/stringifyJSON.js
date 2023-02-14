@@ -30,24 +30,24 @@ function stringifyJSON(obj) {
   if( obj === null) return 'null'
   if(typeof obj === "boolean") return String(obj)
   if(typeof obj === 'string') return `"${obj}"`
-  // if(Array.isArray(obj)) {
-  //   const newArr = []
-  //   for(let i = 0; i < obj.length; i++){
-  //     newArr.push(stringifyJSON(obj[i]))
-  //   }
-  //   return `[${newArr}]`
-  // }
-  // if(typeof obj === 'object') {
-  //   let newObj = "";
-  //   for(let key in obj){
-  //     if(obj[key] === undefined || typeof obj[key] === 'function'){
-  //       continue;
-  //     }
-  //     newObj += `${stringifyJSON(key)}:${stringifyJSON(obj[key])},`
-  //   }
-  //   newObj = newObj.slice(0,-1);
-  //   return `{${newObj}}`;
-  // }
+  if(Array.isArray(obj)) {
+    const newArr = []
+    for(let i = 0; i < obj.length; i++){
+      newArr.push(stringifyJSON(obj[i]))
+    }
+    return `[${newArr}]`
+  }
+  if(typeof obj === 'object') {
+    let newObj = "";
+    for(let key in obj){
+      if(obj[key] === undefined || typeof obj[key] === 'function'){
+        continue;
+      }
+      newObj += `${stringifyJSON(key)}:${stringifyJSON(obj[key])},`
+    }
+    newObj = newObj.slice(0,-1);
+    return `{${newObj}}`;
+  }
   // your code goes here
 };
 
